@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SpaUserControl.Common.Validation;
 
 namespace SpaUserControl.Domain.Models
 {
     public class User
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public User(string nome, string email)
+        {
+            this.Nome = nome;
+            this.Email = email;
+        }
+        public int Id { get; private set; }
+        public string Nome { get; private set; }
+        public string Email { get; private set; }
+        public string Password { get; private set; }
+
+        public void setPassword(string password, string confirmPassword)
+        {
+            AssertionConcern.AssertArgumentNotEmpty(password, "Senha vazia");
+        }
     }
 }
